@@ -57,6 +57,10 @@ The FPS figures assume a 65.6 MHz sensor clock, measured on one PMW3360. The clo
 
 The 2-byte trailer is not a CRC of the data. The sensor's mask ROM steps the decryption keystream once per stored byte and checks that the final state XORed with the trailer equals `0xBEEF`. That depends only on the seed (the first two bytes) and the length. These builds keep both, so the stock trailer stays valid.
 
+## See also
+
+- [docs/0x04-vs-0x05.md](docs/0x04-vs-0x05.md): how PixArt's `0x04` and SteelSeries' TrueMove3 `0x05` SROMs differ in smoothing and processing.
+
 ## Credits
 
 - Stock blob: [openinput-fw/sensor-blobs](https://github.com/openinput-fw/sensor-blobs).
