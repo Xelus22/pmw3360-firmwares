@@ -7,6 +7,7 @@ Modified versions of PixArt's PMW3360 SROM `0x04`, the firmware blob most open-s
 | `srom/pmw3360_0x04_nosmooth.bin` | **off** | stock (dynamic) |
 | `srom/pmw3360_0x04_nosmooth_8k.bin` | **off** | **fixed ~8000 FPS** |
 | `srom/pmw3360_0x04_nosmooth_11k.bin` | **off** | **fixed ~11000 FPS** |
+| `srom/pmw3360_0x04_nosmooth_max.bin` | **off** | **fixed at the stock maximum, ~11500 FPS** |
 
 Each `.bin` has a matching `.h`: the same bytes as a C array.
 
@@ -46,10 +47,11 @@ That last step also covers the mask ROM's own power-mode code, which reloads the
 |---|---|
 | 8k | `0x2009` |
 | 11k | `0x174D` |
+| max | `0x163F`: the shortest period the stock firmware ever uses |
 
-The FPS figures assume a 65.6 MHz sensor clock, measured on one PMW3360. The clock varies a little between chips, so expect the real rate to be within a few percent. The stock firmware never goes faster than period `0x163F` (~11.7k FPS), and both builds stay above that.
+The FPS figures assume a 65.6 MHz sensor clock, measured on one PMW3360. The clock varies a little between chips, so expect the real rate to be within a few percent. That clock gives ~11.5k FPS for `max`; a chip with a faster clock (~66.6 MHz) gets ~11.7k. Nothing goes faster than `0x163F`, because shorter periods are untested.
 
-**Caveat: a fixed frame rate caps exposure.** The sensor can't expose longer than the frame period leaves room for. On dark or glossy pads the 11k build may track worse than stock. If SQUAL (register `0x07`) drops a lot compared with the stock SROM, use the 8k build or the dynamic one.
+**Caveat: a fixed frame rate caps exposure.** The sensor can't expose longer than the frame period leaves room for. On dark or glossy pads the 11k and max builds may track worse than stock (max has the least room). If SQUAL (register `0x07`) drops a lot compared with the stock SROM, use a slower build or the dynamic one.
 
 ## Why the sensor still accepts them
 
