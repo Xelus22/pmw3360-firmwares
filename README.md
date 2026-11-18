@@ -11,7 +11,7 @@ Modified versions of PixArt's PMW3360 SROM `0x04`, the firmware blob most open-s
 
 Each `.bin` has a matching `.h`: the same bytes as a C array.
 
-> **Untested on a production mouse.** These are static patches. They pass the sensor's SROM load check by construction (see below), but no tracking tests have been run.
+> **Tested and working on a PMW3360 mouse** (QMK, STM32F411). That is one sensor on one surface, so report any tracking problems on other sensors or pads.
 
 ## Using them
 
